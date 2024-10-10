@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1>Sign Up</h1>
-        <form action="#">
+        <form action="#" onsubmit="return validatePassword()">
             <div class="input-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
@@ -23,11 +23,30 @@
                 <input type="password" id="password" name="password" required>
             </div>
             <div class="input-group">
-                <label for="password">Confirm Password:</label>
-                <input type="password" id="password" name="password" required>
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <div class="error-message" id="error-message" style="color:red; display:none;">
+                Passwords do not match!
             </div>
             <button type="submit">Sign Up</button>
         </form>
     </div>
+
+    <script>
+        function validatePassword() {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+            const errorMessage = document.getElementById("error-message");
+
+            if (password !== confirmPassword) {
+                errorMessage.style.display = 'block';
+                return false; // Prevent form submission
+            }
+            errorMessage.style.display = 'none';
+            return true; // Allow form submission
+        }
+    </script>
 </body>
 </html>
+
